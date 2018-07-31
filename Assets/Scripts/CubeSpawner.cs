@@ -16,16 +16,13 @@ public class CubeSpawner : MonoBehaviour
     float cubeHeight; 
     float originRotation;                                   
         //Rotation increment of the origin game object
-    
-    
+        
     [SerializeField] GameObject cubePrefab;                     
     [SerializeField] GameObject ringOriginPrefab;
 
     GameObject ringOrigin;
     GameObject spawningCube;
     Vector3 cubeSpawnPos;
-
-
 
     void Start ()
     {
@@ -46,7 +43,6 @@ public class CubeSpawner : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Performing all calculations needed to create a ring
     /// </summary>
@@ -65,18 +61,16 @@ public class CubeSpawner : MonoBehaviour
 
         cubeSpawnPos = new Vector3(ringOriginPos.x, ringOriginPos.y, ringOriginPos.z + currentRingRadius);                                 
 
-        cubeHeight = (currentRingRadius/2f) + startingHeight;
-            
+        cubeHeight = (currentRingRadius/2f) + startingHeight;           
     }
 
     /// <summary>
     /// Assembles a ring using the calculations completed in RingPrep
     /// </summary>
     void RingBuild()
-    {
-        
-       for (int i = 1; i<=cubesInRing; i++)
-       {
+    {      
+        for (int i = 1; i<=cubesInRing; i++)
+        {
             spawningCube = Instantiate(cubePrefab, cubeSpawnPos, Quaternion.identity, ringOrigin.transform);
 
             spawningCube.transform.localScale = new Vector3(transform.localScale.x, cubeHeight, 
@@ -87,6 +81,6 @@ public class CubeSpawner : MonoBehaviour
 
             ringOrigin.transform.Rotate(new Vector3(0, originRotation, 0));                                               
                 //Rotate the ringOrigin (and subsequently all child objects)
-       }
+        }
     }
 }
